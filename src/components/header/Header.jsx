@@ -1,6 +1,6 @@
 import "./header.scss";
 
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -13,11 +13,21 @@ const Header = () => {
       <nav className="header__menu">
         <ul>
           <li>
-            <Link to="/">Characters</Link>
+            <NavLink
+              to="/"
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
+              Characters
+            </NavLink>
           </li>
           /
           <li>
-            <Link to="/comics">Comics</Link>
+            <NavLink
+              to="/comics"
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
+              Comics
+            </NavLink>
           </li>
         </ul>
       </nav>
