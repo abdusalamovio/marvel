@@ -10,21 +10,43 @@ class CharList extends React.Component {
     charList: [],
     loading: true,
     error: false,
+    newItemLoading: false,
+    offset: 210,
+    charEnded: false,
   };
 
   marvelService = new MarvelService();
 
   componentDidMount() {
-    this.marvelService
-      .getAllCharacters()
-      .then(this.onCharListLoaded)
-      .catch(this.onError);
+    this.onRequest();
   }
 
-  onCharListLoaded = (charList) => {
-    this.setState({
-      charList,
-      loading: false,
+  onRequest = (offset) => {
+    this.onCharListLoading();
+    this.marvelService
+      .getAllCharacters(offset)
+      .then(this.onCharListLoaded)
+      .catch(this.onError);
+  };
+
+  onCharListLoading = () => {
+    this.setState({ newItemLoading: true });
+  };
+
+  onCharListLoaded = (newCharList) => {
+    let ended = false;
+    if (newCharList.length < 9) ended = true;
+    this.setState(({ offset, charList }) => {
+      const uniqueChars = newCharList.filter(
+        (newChar) => !charList.some((char) => char.id === newChar.id)
+      );
+      return {
+        charList: [...charList, ...uniqueChars],
+        loading: false,
+        newItemLoading: false,
+        offset: offset + 9,
+        charEnded: ended,
+      };
     });
   };
 
@@ -60,7 +82,8 @@ class CharList extends React.Component {
   };
 
   render() {
-    const { charList, loading, error } = this.state;
+    const { charList, loading, error, newItemLoading, offset, charEnded } =
+      this.state;
 
     const items = this.renderItems(charList);
 
@@ -73,7 +96,12 @@ class CharList extends React.Component {
         {errorMessage}
         {spinner}
         {content}
-        <button className="button button__main button__long">
+        <button
+          onClick={() => this.onRequest(offset)}
+          disabled={newItemLoading}
+          style={{ display: charEnded ? "none" : "block" }}
+          className="button button__main button__long"
+        >
           <div className="inner">load more</div>
         </button>
       </div>
