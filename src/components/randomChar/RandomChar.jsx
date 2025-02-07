@@ -18,23 +18,23 @@ class RandomChar extends React.Component {
 
   componentDidMount() {
     this.updateChar();
-    this.timerId = setInterval(this.updateChar, 30000);
+    this.timerId = setInterval(this.updateChar, 60000);
   }
 
   componentWillUnmount() {
     clearInterval(this.timerId);
   }
 
+  onCharLoading = () => {
+    this.setState({
+      loading: true,
+    });
+  };
+
   onCharLoaded = (char) => {
     this.setState({
       char,
       loading: false,
-    });
-  };
-
-  onCharLoading = () => {
-    this.setState({
-      loading: true,
     });
   };
 

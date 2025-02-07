@@ -6,7 +6,7 @@ import "./assets/styles/style.scss";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <BrowserRouter>
+  <BrowserRouter basename="/marvel">
     <React.StrictMode>
       <App />
     </React.StrictMode>
