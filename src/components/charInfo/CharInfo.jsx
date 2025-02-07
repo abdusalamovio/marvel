@@ -7,6 +7,8 @@ import ErrorMessage from "../errorMessage/ErrorMessage";
 import Skeleton from "../skeleton/Skeleton";
 import View from "./View";
 
+import PropTypes from "prop-types";
+
 class CharInfo extends React.Component {
   state = {
     char: null,
@@ -75,5 +77,9 @@ class CharInfo extends React.Component {
     );
   }
 }
+
+CharInfo.propTypes = {
+  charId: PropTypes.number,
+};
 
 export default CharInfo;
