@@ -57,14 +57,14 @@ class RandomChar extends React.Component {
   render() {
     const { char, loading, error } = this.state;
 
-    const errorMessage = error ? <ErrorMessage /> : null;
     const spinner = loading ? <Spinner /> : null;
+    const errorMessage = error ? <ErrorMessage /> : null;
     const content = !(loading || error) ? <View char={char} /> : null;
 
     return (
       <div className="randomchar">
-        {errorMessage}
         {spinner}
+        {errorMessage}
         {content}
         <div className="randomchar__static">
           <p className="randomchar__title">

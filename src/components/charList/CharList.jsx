@@ -23,14 +23,6 @@ class CharList extends React.Component {
     this.onRequest();
   }
 
-  onRequest = (offset) => {
-    this.onCharListLoading();
-    this.marvelService
-      .getAllCharacters(offset)
-      .then(this.onCharListLoaded)
-      .catch(this.onError);
-  };
-
   onCharListLoading = () => {
     this.setState({ newItemLoading: true });
   };
@@ -38,10 +30,12 @@ class CharList extends React.Component {
   onCharListLoaded = (newCharList) => {
     let ended = false;
     if (newCharList.length < 9) ended = true;
+
     this.setState(({ offset, charList }) => {
       const uniqueChars = newCharList.filter(
         (newChar) => !charList.some((char) => char.id === newChar.id)
       );
+
       return {
         charList: [...charList, ...uniqueChars],
         loading: false,
@@ -57,6 +51,14 @@ class CharList extends React.Component {
       error: true,
       loading: false,
     });
+  };
+
+  onRequest = (offset) => {
+    this.onCharListLoading();
+    this.marvelService
+      .getAllCharacters(offset)
+      .then(this.onCharListLoaded)
+      .catch(this.onError);
   };
 
   itemRefs = [];
@@ -114,14 +116,14 @@ class CharList extends React.Component {
 
     const items = this.renderItems(charList);
 
-    const errorMessage = error ? <ErrorMessage /> : null;
     const spinner = loading ? <Spinner /> : null;
+    const errorMessage = error ? <ErrorMessage /> : null;
     const content = !(loading || error) ? items : null;
 
     return (
       <div className="char__list">
-        {errorMessage}
         {spinner}
+        {errorMessage}
         {content}
         <button
           onClick={() => this.onRequest(offset)}

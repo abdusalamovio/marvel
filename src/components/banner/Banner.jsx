@@ -11,7 +11,7 @@ const Banner = () => {
         <br />
         Stay tuned!
       </div>
-      <img src={avengersLogo} alt="Avengers logo" />
+      <img src={avengersLogo} alt="AvengersLogo" />
     </div>
   );
 };
