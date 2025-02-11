@@ -9,74 +9,53 @@ import View from "./View";
 
 import PropTypes from "prop-types";
 
-class CharInfo extends React.Component {
-  state = {
-    char: null,
-    loading: false,
-    error: false,
-  };
+const CharInfo = ({ charId }) => {
+  const [char, setChar] = React.useState(null);
+  const [loading, setLoading] = React.useState(false);
+  const [error, setError] = React.useState(false);
 
-  marvelService = new MarvelService();
+  const marvelService = new MarvelService();
 
-  componentDidMount() {
-    this.updateChar();
-  }
+  React.useEffect(() => {
+    updateChar();
+    // eslint-disable-next-line
+  }, [charId]);
 
-  componentDidUpdate(prevProps) {
-    if (this.props.charId !== prevProps.charId) {
-      this.updateChar();
-    }
-  }
-
-  onCharLoading = () => {
-    this.setState({
-      loading: true,
-    });
-  };
-
-  onCharLoaded = (char) => {
-    this.setState({
-      char,
-      loading: false,
-    });
-  };
-
-  onError = () => {
-    this.setState({
-      loading: false,
-      error: true,
-    });
-  };
-
-  updateChar = () => {
-    const { charId } = this.props;
+  const updateChar = () => {
     if (!charId) return;
 
-    this.onCharLoading();
-    this.marvelService
-      .getCharacter(charId)
-      .then(this.onCharLoaded)
-      .catch(this.onError);
+    onCharLoading();
+    marvelService.getCharacter(charId).then(onCharLoaded).catch(onError);
   };
 
-  render() {
-    const { char, loading, error } = this.state;
+  const onCharLoading = () => {
+    setLoading(true);
+  };
 
-    const spinner = loading ? <Spinner /> : null;
-    const errorMessage = error ? <ErrorMessage /> : null;
-    const skeleton = char || loading || error ? null : <Skeleton />;
-    const content = !(loading || error || !char) ? <View char={char} /> : null;
+  const onCharLoaded = (char) => {
+    setChar(char);
+    setLoading(false);
+  };
 
-    return (
-      <div className="char__info">
-        {spinner}
-        {errorMessage}
-        {skeleton}
-        {content}
-      </div>
-    );
-  }
-}
+  const onError = () => {
+    setLoading(false);
+    setError(true);
+  };
+
+  const spinner = loading ? <Spinner /> : null;
+  const errorMessage = error ? <ErrorMessage /> : null;
+  const skeleton = char || loading || error ? null : <Skeleton />;
+  const content = !(loading || error || !char) ? <View char={char} /> : null;
+
+  return (
+    <div className="char__info">
+      {spinner}
+      {errorMessage}
+      {skeleton}
+      {content}
+    </div>
+  );
+};
 
 CharInfo.propTypes = {
   charId: PropTypes.number,

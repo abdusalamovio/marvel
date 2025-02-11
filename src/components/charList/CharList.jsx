@@ -19,6 +19,7 @@ const CharList = (props) => {
 
   React.useEffect(() => {
     onRequest();
+    // eslint-disable-next-line
   }, []);
 
   const onRequest = (offset) => {
