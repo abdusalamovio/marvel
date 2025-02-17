@@ -1,12 +1,12 @@
 import Banner from "../components/banner/Banner";
-import SingleComic from "../components/singleComic/SingleComic";
+import SingleComicLayout from "./singleComicLayout/SingleComicLayout";
 
 const SinglePage = () => {
   return (
-    <div>
+    <>
       <Banner />
-      <SingleComic />
-    </div>
+      <SingleComicLayout />
+    </>
   );
 };
 

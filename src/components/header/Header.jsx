@@ -15,7 +15,8 @@ const Header = () => {
           <li>
             <NavLink
               to="/"
-              className={({ isActive }) => (isActive ? "active" : "")}
+              style={({ isActive }) => ({ color: isActive ? "#9f0013" : "" })}
+              end
             >
               Characters
             </NavLink>
@@ -24,7 +25,7 @@ const Header = () => {
           <li>
             <NavLink
               to="/comics"
-              className={({ isActive }) => (isActive ? "active" : "")}
+              style={({ isActive }) => ({ color: isActive ? "#9f0013" : "" })}
             >
               Comics
             </NavLink>

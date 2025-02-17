@@ -26,7 +26,7 @@ const useMarvelService = () => {
     return response.data.results.map(_transformComics);
   };
 
-  const getComics = async (id) => {
+  const getComic = async (id) => {
     const response = await request(`${_apiBase}comics/${id}?${_apiKey}`);
     return _transformComics(response.data.results[0]);
   };
@@ -68,7 +68,7 @@ const useMarvelService = () => {
     getAllCharacters,
     getCharacter,
     getAllComics,
-    getComics,
+    getComic,
   };
 };
 
