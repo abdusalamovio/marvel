@@ -43,7 +43,7 @@ const CharList = (props) => {
   };
 
   const renderItems = (arr) => {
-    const items = arr.map((item, index) => {
+    const items = arr.map((item, i) => {
       const imgStyle = {
         objectFit:
           item.thumbnail ===
@@ -51,20 +51,21 @@ const CharList = (props) => {
             ? "unset"
             : "cover",
       };
+
       return (
         <li
-          key={index}
+          key={i}
           className="char__item"
+          ref={(elem) => (itemRefs.current[i] = elem)}
           tabIndex={0}
-          ref={(elem) => (itemRefs.current[index] = elem)}
           onClick={() => {
             props.onCharSelected(item.id);
-            focusOnItem(index);
+            focusOnItem(i);
           }}
-          onKeyPress={(e) => {
+          onKeyDown={(e) => {
             if (e.key === " " || e.key === "Enter") {
               props.onCharSelected(item.id);
-              focusOnItem(index);
+              focusOnItem(i);
             }
           }}
         >

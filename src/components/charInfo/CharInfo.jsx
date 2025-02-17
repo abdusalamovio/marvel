@@ -56,7 +56,7 @@ const View = ({ char }) => {
   };
 
   return (
-    <div>
+    <>
       <div className="char__basics">
         <img style={imgStyle} src={thumbnail} alt={name} />
         <div>
@@ -75,17 +75,17 @@ const View = ({ char }) => {
       <div className="char__comics">Comics:</div>
       <ul className="char__comics-list">
         {comics.length > 0 ? null : "There is no comics with this character"}
-        {comics.map((item, index) => {
+        {comics.map((item, i) => {
           // eslint-disable-next-line
-          if (index > 9) return;
+          if (i > 9) return;
           return (
-            <li key={index} className="char__comics-item">
+            <li key={i} className="char__comics-item">
               {item.name}
             </li>
           );
         })}
       </ul>
-    </div>
+    </>
   );
 };
 

@@ -28,7 +28,11 @@ const SingleComicLayout = () => {
   };
 
   const errorMessage = error ? <ErrorMessage /> : null;
-  const spinner = loading ? <Spinner /> : null;
+  const spinner = loading ? (
+    <div style={{ marginTop: "30px" }}>
+      <Spinner />
+    </div>
+  ) : null;
   const content = !(loading || error || !comic) ? <View comic={comic} /> : null;
 
   return (
