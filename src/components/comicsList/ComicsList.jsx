@@ -1,19 +1,19 @@
 import "./comicsList.scss";
 
-import React from "react";
+import { useState, useEffect } from "react";
 import useMarvelService from "../../services/MarvelService";
 import Spinner from "../spinner/Spinner";
 import ErrorMessage from "../errorMessage/ErrorMessage";
 
 const ComicsList = () => {
-  const [comicsList, setComicsList] = React.useState([]);
-  const [newItemLoading, setNewItemLoading] = React.useState(false);
-  const [offset, setOffset] = React.useState(0);
-  const [comicsEnded, setComicsEnded] = React.useState(false);
+  const [comicsList, setComicsList] = useState([]);
+  const [newItemLoading, setNewItemLoading] = useState(false);
+  const [offset, setOffset] = useState(0);
+  const [comicsEnded, setComicsEnded] = useState(false);
 
   const { loading, error, getAllComics } = useMarvelService();
 
-  React.useEffect(() => {
+  useEffect(() => {
     onRequest(offset, true);
     // eslint-disable-next-line
   }, []);
@@ -23,11 +23,11 @@ const ComicsList = () => {
     getAllComics(offset).then(onComicsListLoaded);
   };
 
-  const onComicsListLoaded = (newCharList) => {
-    setComicsList((charList) => [...charList, ...newCharList]);
+  const onComicsListLoaded = (newComicsList) => {
+    setComicsList((comicsList) => [...comicsList, ...newComicsList]);
     setNewItemLoading(false);
     setOffset((offset) => offset + 8);
-    setComicsEnded(newCharList.length < 8);
+    setComicsEnded(newComicsList.length < 8);
   };
 
   const renderItems = (arr) => {

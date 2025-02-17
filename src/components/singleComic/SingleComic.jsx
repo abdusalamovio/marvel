@@ -1,12 +1,11 @@
 import "./singleComic.scss";
-import xMen from "../../assets/img/x-men.png";
 
 import { Link } from "react-router-dom";
 
 const SingleComic = () => {
   return (
     <div className="single-comic">
-      <img src={xMen} alt="x-men" className="single-comic__img" />
+      <img src="" alt="x-men" className="single-comic__img" />
       <div className="single-comic__info">
         <h2 className="single-comic__name">X-Men: Days of Future Past</h2>
         <p className="single-comic__descr">

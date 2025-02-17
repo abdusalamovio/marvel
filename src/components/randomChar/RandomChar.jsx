@@ -2,17 +2,17 @@ import "./randomChar.scss";
 import mjolnir from "../../assets/img/mjolnir.png";
 
 import View from "./View";
-import React from "react";
+import { useState, useEffect } from "react";
 import useMarvelService from "../../services/MarvelService";
 import Spinner from "../spinner/Spinner";
 import ErrorMessage from "../errorMessage/ErrorMessage";
 
 const RandomChar = () => {
-  const [char, setChar] = React.useState(null);
+  const [char, setChar] = useState(null);
 
   const { loading, error, clearError, getCharacter } = useMarvelService();
 
-  React.useEffect(() => {
+  useEffect(() => {
     updateChar();
     const timerId = setInterval(updateChar, 60000);
 

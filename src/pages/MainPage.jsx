@@ -4,11 +4,11 @@ import CharInfo from "../components/charInfo/CharInfo";
 
 import decoration from "../assets/img/vision.png";
 
-import React from "react";
+import { useState } from "react";
 import ErrorBoundary from "../components/errorBoundary/ErrorBoundary";
 
 const MainPage = () => {
-  const [selectedChar, setSelectedChar] = React.useState(null);
+  const [selectedChar, setSelectedChar] = useState(null);
 
   const onCharSelected = (id) => {
     setSelectedChar(id);

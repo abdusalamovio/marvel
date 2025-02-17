@@ -1,6 +1,6 @@
 import "./charList.scss";
 
-import React from "react";
+import { useState, useEffect, useRef } from "react";
 import useMarvelService from "../../services/MarvelService";
 import Spinner from "../spinner/Spinner";
 import ErrorMessage from "../errorMessage/ErrorMessage";
@@ -8,14 +8,14 @@ import ErrorMessage from "../errorMessage/ErrorMessage";
 import PropTypes from "prop-types";
 
 const CharList = (props) => {
-  const [charList, setCharList] = React.useState([]);
-  const [newItemLoading, setNewItemLoading] = React.useState(false);
-  const [offset, setOffset] = React.useState(210);
-  const [charEnded, setCharEnded] = React.useState(false);
+  const [charList, setCharList] = useState([]);
+  const [newItemLoading, setNewItemLoading] = useState(false);
+  const [offset, setOffset] = useState(210);
+  const [charEnded, setCharEnded] = useState(false);
 
   const { loading, error, getAllCharacters } = useMarvelService();
 
-  React.useEffect(() => {
+  useEffect(() => {
     onRequest(offset, true);
     // eslint-disable-next-line
   }, []);
@@ -32,7 +32,7 @@ const CharList = (props) => {
     setCharEnded(newCharList.length < 9);
   };
 
-  const itemRefs = React.useRef([]);
+  const itemRefs = useRef([]);
 
   const focusOnItem = (id) => {
     itemRefs.current.forEach((item) =>

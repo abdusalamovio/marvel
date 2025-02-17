@@ -1,7 +1,7 @@
-import React from "react";
+import { Component } from "react";
 import ErrorMessage from "../errorMessage/ErrorMessage";
 
-class ErrorBoundary extends React.Component {
+class ErrorBoundary extends Component {
   state = {
     error: false,
   };
