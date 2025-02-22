@@ -1,10 +1,10 @@
-import Banner from "../components/banner/Banner";
+import AppBanner from "../components/appBanner/AppBanner";
 import ComicsList from "../components/comicsList/ComicsList";
 
 const ComicsPage = () => {
   return (
     <>
-      <Banner />
+      <AppBanner />
       <ComicsList />
     </>
   );

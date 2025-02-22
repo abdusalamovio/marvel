@@ -1,16 +1,16 @@
-import "./header.scss";
+import "./appHeader.scss";
 
 import { Link, NavLink } from "react-router-dom";
 
-const Header = () => {
+const AppHeader = () => {
   return (
-    <header className="header">
-      <h1 className="header__title">
+    <header className="app__header">
+      <h1 className="app__title">
         <Link to="/">
           <span>Marvel</span> information portal
         </Link>
       </h1>
-      <nav className="header__menu">
+      <nav className="app__menu">
         <ul>
           <li>
             <NavLink
@@ -36,4 +36,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default AppHeader;

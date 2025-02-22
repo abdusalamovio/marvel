@@ -1,5 +1,5 @@
 import "./randomChar.scss";
-import mjolnir from "../../assets/img/mjolnir.png";
+import mjolnir from "../../resources/img/mjolnir.png";
 
 import { useState, useEffect } from "react";
 import useMarvelService from "../../services/MarvelService";
@@ -83,7 +83,7 @@ const View = ({ char }) => {
             <div className="inner">homepage</div>
           </a>
           <a href={wiki} className="button button__secondary">
-            <div className="inner">Wiki</div>
+            <div className="inner">wiki</div>
           </a>
         </div>
       </div>

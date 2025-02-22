@@ -20,7 +20,6 @@ const CharInfo = ({ charId }) => {
 
   const updateChar = () => {
     if (!charId) return;
-
     clearError();
     getCharacter(charId).then(onCharLoaded);
   };
@@ -66,7 +65,7 @@ const View = ({ char }) => {
               <div className="inner">homepage</div>
             </a>
             <a href={wiki} className="button button__secondary">
-              <div className="inner">Wiki</div>
+              <div className="inner">wiki</div>
             </a>
           </div>
         </div>

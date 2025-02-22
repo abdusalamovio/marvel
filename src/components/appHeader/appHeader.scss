@@ -1,8 +1,10 @@
-@import "../../assets/styles/variables.scss";
+@import "../../styles/variables.scss";
 
-.header {
-  display: flex;
-  justify-content: space-between;
+.app {
+  &__header {
+    display: flex;
+    justify-content: space-between;
+  }
   &__title {
     font-weight: bold;
     font-size: 28px;

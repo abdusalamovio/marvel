@@ -1,51 +1,10 @@
 import "./singleComicLayout.scss";
 
-import { useState, useEffect } from "react";
-import useMarvelService from "../../services/MarvelService";
-import Spinner from "../../components/spinner/Spinner";
-import ErrorMessage from "../../components/errorMessage/ErrorMessage";
+import { Link } from "react-router-dom";
 
-import { useParams, Link } from "react-router-dom";
+const SingleComicLayout = ({ data }) => {
+  const { title, description, pageCount, thumbnail, language, price } = data;
 
-const SingleComicLayout = () => {
-  const [comic, setComic] = useState(null);
-  const { comicId } = useParams();
-
-  const { loading, error, clearError, getComic } = useMarvelService();
-
-  useEffect(() => {
-    updateComic();
-    // eslint-disable-next-line
-  }, [comicId]);
-
-  const updateComic = () => {
-    clearError();
-    getComic(comicId).then(onComicLoaded);
-  };
-
-  const onComicLoaded = (comic) => {
-    setComic(comic);
-  };
-
-  const errorMessage = error ? <ErrorMessage /> : null;
-  const spinner = loading ? (
-    <div style={{ marginTop: "30px" }}>
-      <Spinner />
-    </div>
-  ) : null;
-  const content = !(loading || error || !comic) ? <View comic={comic} /> : null;
-
-  return (
-    <>
-      {errorMessage}
-      {spinner}
-      {content}
-    </>
-  );
-};
-
-const View = ({ comic }) => {
-  const { title, description, pageCount, thumbnail, language, price } = comic;
   return (
     <div className="single-comic">
       <img className="single-comic__img" src={thumbnail} alt={title} />

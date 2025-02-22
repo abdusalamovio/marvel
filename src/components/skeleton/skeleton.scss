@@ -1,3 +1,10 @@
+.char__select {
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 24px;
+  text-align: center;
+}
+
 .skeleton {
   margin-top: 30px;
   &__header {
@@ -39,11 +46,4 @@
   100% {
     opacity: 1;
   }
-}
-
-.char__select {
-  font-weight: bold;
-  font-size: 18px;
-  line-height: 24px;
-  text-align: center;
 }
