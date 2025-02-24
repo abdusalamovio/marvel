@@ -1,12 +1,12 @@
 import RandomChar from "../components/randomChar/RandomChar";
 import CharList from "../components/charList/CharList";
 import CharInfo from "../components/charInfo/CharInfo";
-import CharSearchForm from "../components/charSearchForm/CharSearchForm";
 import decoration from "../resources/img/vision.png";
 
-import ErrorBoundary from "../components/errorBoundary/ErrorBoundary";
-
 import { useState } from "react";
+import ErrorBoundary from "../components/errorBoundary/ErrorBoundary";
+import CharSearchForm from "../components/charSearchForm/CharSearchForm";
+import { Helmet } from "react-helmet";
 
 const MainPage = () => {
   const [selectedChar, setSelectedChar] = useState(null);
@@ -17,6 +17,10 @@ const MainPage = () => {
 
   return (
     <main>
+      <Helmet>
+        <meta name="description" content="Marvel information portal" />
+        <title>Marvel information portal</title>
+      </Helmet>
       <ErrorBoundary>
         <RandomChar />
       </ErrorBoundary>
