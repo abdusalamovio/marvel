@@ -9,6 +9,9 @@
     font-weight: bold;
     font-size: 28px;
     line-height: 37px;
+    a {
+      color: $dark;
+    }
     span {
       color: $main-color;
     }

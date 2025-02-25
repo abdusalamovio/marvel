@@ -6,7 +6,7 @@ import ErrorMessage from "../errorMessage/ErrorMessage";
 
 import { Link } from "react-router-dom";
 
-import { Formik, Form, Field, ErrorMessage as FormikEM } from "formik";
+import { Formik, Form, Field, ErrorMessage as ErrMsg } from "formik";
 import * as Yup from "yup";
 
 const CharSearchForm = () => {
@@ -60,16 +60,11 @@ const CharSearchForm = () => {
         }}
       >
         <Form>
-          <label className="char__search-label" htmlFor="charName">
+          <label htmlFor="charName" className="char__search-label">
             Or find a character by name:
           </label>
           <div className="char__search-wrapper">
-            <Field
-              id="charName"
-              name="charName"
-              type="text"
-              placeholder="Enter name"
-            />
+            <Field name="charName" placeholder="Enter name" type="text" />
             <button
               className="button button__main"
               disabled={loading}
@@ -78,10 +73,10 @@ const CharSearchForm = () => {
               <div className="inner">find</div>
             </button>
           </div>
-          <FormikEM
+          <ErrMsg
+            name="charName"
             className="char__search-error"
             component="div"
-            name="charName"
           />
         </Form>
       </Formik>
